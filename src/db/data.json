@@ -147,6 +147,13 @@
       "kor": "원숭이",
       "isDone": false,
       "id": 18
+    },
+    {
+      "day": "7",
+      "eng": "java",
+      "kor": "자바",
+      "isDone": false,
+      "id": 19
     }
   ]
 }

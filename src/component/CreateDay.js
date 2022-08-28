@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useFetch from './../hooks/useFetch';
+import useFetch from '../hooks/useFetch';
 
 const CreateDay = () => {
     const days = useFetch("http://localhost:3001/days");

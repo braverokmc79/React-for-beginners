@@ -1,29 +1,32 @@
 
 import { useRef } from 'react';
-import useFetch from './../hooks/useFetch';
+import useFetch from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { IDay } from './DayList';
 
 const CreateWord = () => {
-    const engRef = useRef(null);
-    const korRef = useRef(null);
-    const dayRef = useRef(null);
+    const engRef = useRef<HTMLInputElement>(null);
+    const korRef = useRef<HTMLInputElement>(null);
+    const dayRef = useRef<HTMLSelectElement>(null);
     const [isLoading, setIsLoading] = useState(false);
 
 
-    const days = useFetch("http://localhost:3001/days");
+    const days :IDay[] = useFetch("http://localhost:3001/days");
     const navigate = useNavigate();
 
     //useHistory =>eact-router-dom@6 이상 사용안함 = > useNavigate 으로 변경할것
     //const history = useHistory();
 
-    function onSubmit(e) {
+    function onSubmit(e : React.FormEvent) {
         e.preventDefault();
 
-        if (!isLoading) {
+        if (!isLoading && dayRef.current && engRef.current && korRef.current) {
 
             const eng = engRef.current;
-            const kor = e.target.kor;
+            const kor = korRef.current;
+            const day = dayRef.current.value;
+
 
             if (!eng.value) {
                 alert("eng 를 입력해 주세요.");
@@ -44,7 +47,7 @@ const CreateWord = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    day: dayRef.current.value,
+                    day: day,
                     eng: eng.value,
                     kor: kor.value,
                     isDone: false
@@ -52,9 +55,7 @@ const CreateWord = () => {
             })
                 .then(res => {
                     if (res.ok) {
-                        alert("생성이 완료 되었습니다.");
-                        engRef.current.value = "";
-                        e.target.kor.value = "";
+                        alert("생성이 완료 되었습니다.");                  
                         //dayRef.current.value = 1;
                         // navigate(`/day/${dayRef.current.value}`);
                         setIsLoading(false);
