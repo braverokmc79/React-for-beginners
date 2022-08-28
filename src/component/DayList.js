@@ -1,21 +1,18 @@
 import dummy from "../db/data.json";
-import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 const DayList = () => {
-    console.log(dummy.days, dummy.words);
-    const [days, setDays] = useState(dummy.days)
-    const [words, setWords] = useState(dummy.words)
 
     return (
         <ul className="list_day">
             {dummy.days.map(day => (
                 <li key={day.id}>
-                    Day {day.day}
+                    <Link to={`/day/${day.day}`}>Day {day.day}</Link>
                 </li>
-            ))}
+            ))
+            }
 
-        </ul>
+        </ul >
     );
 };
 
