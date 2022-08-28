@@ -5,6 +5,26 @@ const DayList = () => {
 
     const days = useFetch("http://localhost:3001/days");
 
+
+    if (days.length === 0) {
+        return <div className='d-flex justify-content-center loading-spinner'
+            style={{
+                marginTop: "50px",
+                textAlign: "center"
+            }}
+        >
+
+            <div className="spinner-border text-danger"
+                style={{
+                    width: '3rem',
+                    height: '3rem'
+                }}
+                role="status" >
+                <span className="sr-only">Loading...</span>
+            </div>
+        </div >
+    }
+
     return (
         <>
             <ul className="list_day">

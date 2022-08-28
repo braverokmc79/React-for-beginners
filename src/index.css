@@ -130,3 +130,51 @@ button {
   height: 40px;
   font-size: 20px;
 }
+
+
+/* spinner */
+.text-danger {
+    color: #dc3545!important;
+}
+@media (prefers-reduced-motion: reduce){
+.spinner-border, .spinner-grow {
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+}
+}
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: -0.125em;
+    border: 0.25em solid currentcolor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: .75s linear infinite spinner-border;
+    /* animation: .75s linear infinite spinner-border; */
+    
+    animation: rotate_spinner 1s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate_spinner{
+	100% {
+    	transform: rotate(360deg);
+    }
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+.loading-spinner::after {
+    display: block;
+    clear: both;
+    content: "";
+}
